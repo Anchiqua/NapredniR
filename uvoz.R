@@ -40,16 +40,37 @@ pretvori.zemljevid <- function(zemljevid) {
 }
 
 # Regije na zemljevidu
-
+zemljevid$X1995 <- zemljevid1$X1995
+zemljevid$X1996 <- zemljevid1$X1996
+zemljevid$X1997 <- zemljevid1$X1997
+zemljevid$X1998 <- zemljevid1$X1998
+zemljevid$X1999 <- zemljevid1$X1999
+zemljevid$X2000 <- zemljevid1$X2000
+zemljevid$X2001 <- zemljevid1$X2001
+zemljevid$X2002 <- zemljevid1$X2002
+zemljevid$X2003 <- zemljevid1$X2003
+zemljevid$X2004 <- zemljevid1$X2004
+zemljevid$X2005 <- zemljevid1$X2005
+zemljevid$X2006 <- zemljevid1$X2006
+zemljevid$X2007 <- zemljevid1$X2007
+zemljevid$X2008 <- zemljevid1$X2008
+zemljevid$X2009 <- zemljevid1$X2009
 zemljevid$X2010 <- zemljevid1$X2010
 zemljevid$X2011 <- zemljevid1$X2011
+zemljevid$X2012 <- zemljevid1$X2012
+zemljevid$X2013 <- zemljevid1$X2013
+zemljevid$X2014 <- zemljevid1$X2014
+zemljevid$X2015 <- zemljevid1$X2015
+zemljevid$X2016 <- zemljevid1$X2016
+zemljevid$X2017 <- zemljevid1$X2017
 zemljevid2 <- pretvori.zemljevid(zemljevid)
 
 # Zemljevid:
 
 graf.zemljevid <- ggplot() + geom_polygon(data = zemljevid2, aes(x=long, y=lat, group=group,
                                                                   fill=X2011),color = "grey30") +
-  scale_fill_gradient(low="cyan", high="cyan4") +
+  scale_fill_gradient(low="dodgerblue3", high="firebrick3") +
   guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
 
 print(graf.zemljevid)
+

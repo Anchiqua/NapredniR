@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "824065032",
+    "hash" : "0",
     "id" : "E985B94B",
-    "lastKnownWriteTime" : 1553723003,
-    "last_content_update" : 1553723003171,
+    "lastKnownWriteTime" : 1553723799,
+    "last_content_update" : 1553723799040,
     "path" : "~/Desktop/Šola/NapredniR/Ui.R",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "28,25",
-        "scrollLine" : "0"
+        "cursorPosition" : "24,52",
+        "scrollLine" : "7"
     },
     "relative_order" : 5,
     "source_on_save" : false,
