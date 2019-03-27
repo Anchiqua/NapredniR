@@ -11,11 +11,11 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     # define content of left side of the page ####
                     sidebarPanel(
                       selectInput(inputId = "meritev", 
-                                  label = "Te zanima kako se sozi leta spreminja povprečna starost ali pa število sklenitev zakonskih zvez?",
-                                  choices = c("Povprečna starost ženina",
-                                              "Povprečna starost neveste", 
-                                              "Število sklenitev zakonskih zvez", 
-                                              "Sklenitev zakonskih zvez na 1000 prebivalcev"),
+                                  label = "Te zanima kako se skozi leta spreminja povprečna starost ali pa število sklenitev zakonskih zvez?",
+                                  choices = c("Povprečna starost ženina"="povp_starost_zenina",
+                                              "Povprečna starost neveste" = "povp_starost_neveste", 
+                                              "Število sklenitev zakonskih zvez" = "sklenitev_zvez", 
+                                              "Sklenitev zakonskih zvez na 1000 prebivalcev" = "sklenitev_zvez_na1000_prebiv"),
                                   selected = "Povprečna starost neveste")
                                  
                     ),

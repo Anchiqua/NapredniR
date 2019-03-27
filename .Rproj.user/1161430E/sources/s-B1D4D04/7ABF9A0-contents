@@ -41,13 +41,14 @@ pretvori.zemljevid <- function(zemljevid) {
 
 # Regije na zemljevidu
 
-zemljevid$leto <- zemljevid1$X2010
+zemljevid$X2010 <- zemljevid1$X2010
+zemljevid$X2011 <- zemljevid1$X2011
 zemljevid2 <- pretvori.zemljevid(zemljevid)
 
 # Zemljevid:
 
 graf.zemljevid <- ggplot() + geom_polygon(data = zemljevid2, aes(x=long, y=lat, group=group,
-                                                                  fill=leto),color = "grey30") +
+                                                                  fill=X2011),color = "grey30") +
   scale_fill_gradient(low="cyan", high="cyan4") +
   guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
 

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1553722629232.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A0E71200",
+    "lastKnownWriteTime" : 4536618752,
+    "last_content_update" : 1553722629232,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "49D89BC2",
+        "caption" : "povprecna_starost_leta",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=povprecna_starost_leta&cache_key=49D89BC2",
+        "displayedObservations" : 62,
+        "environment" : "",
+        "object" : "povprecna_starost_leta",
+        "preview" : 0,
+        "totalObservations" : 62,
+        "variables" : 5
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
