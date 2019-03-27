@@ -25,7 +25,8 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                       tabsetPanel(
                         tabPanel(title="Statistika porok skozi leta",      
                                  plotOutput("plotPorokePoLetih")
-                        )
+                        ),
+                      tabPanel(title="Poroke po regijah")  
                       )
                     )
                   )
