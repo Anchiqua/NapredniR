@@ -46,7 +46,9 @@ zemljevid2 <- pretvori.zemljevid(zemljevid)
 
 # Zemljevid:
 
-vsota.zemljevid <- ggplot() + geom_polygon(data = zemljevid2, aes(x=long, y=lat, group=group,
-                                                                  fill=X2010),color = "grey30") +
+graf.zemljevid <- ggplot() + geom_polygon(data = zemljevid2, aes(x=long, y=lat, group=group,
+                                                                  fill=leto),color = "grey30") +
   scale_fill_gradient(low="cyan", high="cyan4") +
   guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
+
+print(graf.zemljevid)
