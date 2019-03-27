@@ -1,9 +1,28 @@
 podatki <- read.csv(file = "podatki.csv", sep=";", header=TRUE)
+starost_regija_nevesta2017 <- read.csv(file="starost_regija_nevesta.csv", sep=";", header = TRUE)
+starost_regija_zenin2017 <- read.csv(file="starost_regija_zenin.csv", sep=";", header = TRUE)
 
+
+#podatki za graf po letih (1954-2017) glede na povprecno starost in stevilo sklenitev zakonskih zvez
+#prvi stolpec predstavlja število sklenitev zakonskih zvez, drugi sklnitev zakosnkih zvez na 1000 prebivalcev, 
+#tretji povprečno starost ženina, četrti povprečno starost neveste
+povprecna_starost_leta<- read.csv(file = "povprecna_starost_leta.csv", sep = ";", header = T)
+names(povprecna_starost_leta)<-c("leto", "sklenitev_zvez", 
+                                 "sklenitev_zvez_na1000_prebiv", 
+                                 "povp_starost_zenina",
+                                 "povp_starost_neveste")
+
+ggplot(povprecna_starost_leta, aes(leto, povp_starost_zenina))+
+  geom_point()
+ggplot(povprecna_starost_leta, aes(leto, sklenitev_zvez_na1000_prebiv))+
+  geom_point()
+
+#stevilo porok po mesecih (s sliderInput bo mogoče izbrati za katero leto se izriše graf)
+
+poroke_po_mesecih<-read.csv("poroke_po_mesecih.csv", sep = ";", header = T)
+ggplot(poroke_po_mesecih, aes(mesec, X1988))+geom_point()
 
 source("zemljevid.r", encoding = "UTF-8")
-library(ggplot2)
-library(dplyr)
 
 # Uvozimo zemljevid.
 zemljevid <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm_shp.zip",
