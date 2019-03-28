@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1553808593988.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1D594EA5",
+    "lastKnownWriteTime" : 4294967302,
+    "last_content_update" : 1553808593988,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C380FBC8",
+        "caption" : "zemljevid2",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=zemljevid2&cache_key=C380FBC8",
+        "displayedObservations" : 5452,
+        "environment" : "",
+        "object" : "zemljevid2",
+        "preview" : 0,
+        "totalObservations" : 5452,
+        "variables" : 42
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
