@@ -29,7 +29,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                     plotOutput("plotPorokePoLetih")
                                        )),
                           
-                          tabPanel("Zemljevid", 
+                          tabPanel("Poroke po regijah", 
                                    sidebarPanel(
                                      selectInput(inputId = "leta",
                                                  label = "Leta",
