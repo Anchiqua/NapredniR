@@ -4,7 +4,7 @@ library(shiny)
 shinyServer(function(input, output) {
   output$plotPorokePoLetih <- renderPlot({
     ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=input$meritev))+
-      geom_point()
+      geom_point()+tema_graf()
   })
   output$plotPorokePoRegijah <- renderPlot({ggplot() + geom_polygon(data = zemljevid2
         , aes_string(x=zemljevid2$long, y=zemljevid2$lat, group=zemljevid2$group,
