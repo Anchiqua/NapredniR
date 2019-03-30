@@ -74,3 +74,23 @@ graf.zemljevid <- ggplot() + geom_polygon(data = zemljevid2, aes(x=long, y=lat, 
 
 print(graf.zemljevid)
 
+# poroke v Evropi
+poroke_evropa<- read.csv(file = "poroke_evropa.csv", sep=";", header=TRUE)
+poroke_evropa<-poroke_evropa[1:6,]
+names(poroke_evropa)[names(poroke_evropa)=='Velika.Britanija']<-'Velika Britanija'
+names(poroke_evropa)[names(poroke_evropa)=='Bosna.in.Hercegovina']<-'Bosna in Hercegovina'
+
+seznam_drzav1<-colnames(poroke_evropa)
+seznam_drzav<-seznam_drzav1[2:36]
+
+locitve_evropa<- read.csv(file = "locitve_evropa.csv", sep=";", header=TRUE)
+names(locitve_evropa)<-seznam_drzav1
+
+
+# g=ggplot(poroke_evropa, aes_string(x=poroke_evropa$X, y="Slovenija")) + geom_col() +
+#   scale_x_continuous(breaks=seq(1960,2010, by=10),labels=c("1960", "'70","'80","'90","2000","'10"))+
+#   scale_y_continuous(breaks=seq(1,12,by=1),labels=c("1","2","3","4","5","6","7","8","9","10","11","12")) + 
+#   xlab("Leta") 
+# g+geom_point(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y="Slovenija"), colour="red")+
+#   geom_line(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y="Slovenija"), colour="red")
+# g
