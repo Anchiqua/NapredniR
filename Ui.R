@@ -57,6 +57,30 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                      ),
                                    mainPanel(
                                      plotOutput("plotPorokeEvropa")
+                                   )), 
+                          tabPanel("Test",
+                                   sidebarPanel(
+                                     helpText("Izpolni spodnji test in preveri pri katerih letih te caka poroka."),
+                                     radioButtons(inputId="spol",
+                                                  label="Spol",
+                                                  choices = c("Zenska", "Moski"),
+                                                  selected = "Zenska"),
+                                     selectInput(inputId="regija1",
+                                                 label="Prebivalisce neveste",
+                                                 choices = regije,
+                                                 selected = "Osrednjeslovenska"),
+                                     selectInput(inputId="regija2",
+                                                 label="Prebivalisce zenina",
+                                                 choices = regije,
+                                                 selected = "Osrednjeslovenska")
+                                      # radioButtons(inputID="druga", 
+                                      #              label="Ste ze bili kdaj poroceni?",
+                                      #              choices = c("Da", "Ne"),
+                                      #              selected = "Ne")
+                                    ),
+                                   mainPanel(
+                                     h1("Poroka te čaka pri:", align="center"),
+                                     htmlOutput("textStarostPoroka")
                                    ))
                           
                            # tabPanel("Poroke po Evropi",

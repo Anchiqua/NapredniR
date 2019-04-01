@@ -94,3 +94,42 @@ names(locitve_evropa)<-seznam_drzav1
 # g+geom_point(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y="Slovenija"), colour="red")+
 #   geom_line(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y="Slovenija"), colour="red")
 # g
+
+
+#priprava podatkov  za kalkulator
+regije<-c("Pomurska", "Podravska", "Koroska", "Savinjska", "Zasavska", "Posavska", 
+          "Jugovzhodna Slovenija", "Osrednjeslovenska", "Gorenjska", "Primorsko-notranjska",
+          "Goriška", "Obalno-kraska")
+#ženske, 1.poroka
+x1<-round(rnorm(12, 29, 3))
+x2<-round(rnorm(12, 28, 1))
+x3<-round(rnorm(12, 30, 2))
+x4<-round(rnorm(12, 30.5, 1))
+x5<-round(rnorm(12, 28, 3))
+x6<-round(rnorm(12, 30, 2))
+x7<-round(rnorm(12, 30, 1))
+x8<-round(rnorm(12, 31, 3))
+x9<-round(rnorm(12, 30, 2))
+x10<-round(rnorm(12, 30, 3))
+x11<-round(rnorm(12, 29, 2))
+x12<-round(rnorm(12, 29, 3))
+
+zenske_poroka1<-data.frame(regije,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12)
+names(zenske_poroka1)<-c("regije",regije)
+
+#moški, 1.poroka
+y1<-round(rnorm(12, 30, 2))
+y2<-round(rnorm(12, 29, 3))
+y3<-round(rnorm(12, 31, 2))
+y4<-round(rnorm(12, 32, 3))
+y5<-round(rnorm(12, 30, 2))
+y6<-round(rnorm(12, 29, 4))
+y7<-round(rnorm(12, 31, 1))
+y8<-round(rnorm(12, 32, 3))
+y9<-round(rnorm(12, 30, 1))
+y10<-round(rnorm(12, 32, 1))
+y11<-round(rnorm(12, 30, 3))
+y12<-round(rnorm(12, 29, 2))
+
+moski_poroka1<-data.frame(regije, y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12)
+names(moski_poroka1)<-c("regije",regije)
