@@ -25,6 +25,8 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                                             "Število sklenitev zakonskih zvez" = "sklenitev_zvez", 
                                                             "Sklenitev zakonskih zvez na 1000 prebivalcev" = "sklenitev_zvez_na1000_prebiv"),
                                                 selected = "Povprečna starost neveste")),
+                                    #downloadButton("downloadData", "Download"),
+                                   
                                    mainPanel(
                                     plotOutput("plotPorokePoLetih")
                                        )),
@@ -79,8 +81,20 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                       #              selected = "Ne")
                                     ),
                                    mainPanel(
-                                     h1("Poroka te čaka pri:", align="center"),
-                                     htmlOutput("textStarostPoroka")
+                                     h1("Poroka te čaka pri:", align="center",style = "font-family: 'Lobster', cursive;
+                                        font-weight: 500; line-height: 1.1; color: #39BFCF;"),
+                                     tags$head(tags$style(HTML("
+                                                               #textStarostPoroka{
+                                                                text-align: center;
+                                                                color: #cc6699;
+                                                                font-size: 20px;
+                                                                font-style: bold;
+                                                               }
+                                                               div.box-header {
+                                                                text-align: center;
+                                                               }
+                                                               "))),
+                                     verbatimTextOutput("textStarostPoroka")
                                    ))
                           
                            # tabPanel("Poroke po Evropi",
