@@ -11,6 +11,11 @@ names(povprecna_starost_leta)<-c("leto", "sklenitev_zvez",
                                  "sklenitev_zvez_na1000_prebiv", 
                                  "povp_starost_zenina",
                                  "povp_starost_neveste")
+razveze_slo <- read.csv(file = "razveze_slo.csv", sep=";", header=TRUE)
+razveze_slo$razveze2<-razveze_slo$Razveze*300
+
+rojstva_slo <- read.csv(file = "rojeni_zunaj_zveze_slo.csv", sep=";", header=TRUE)
+rojstva_slo$rojstva2<-rojstva_slo$Rojeni.zunaj.zakonske.zveze*300
 
 ggplot(povprecna_starost_leta, aes(leto, povp_starost_zenina))+
   geom_point()
@@ -133,3 +138,14 @@ y12<-round(rnorm(12, 29, 2))
 
 moski_poroka1<-data.frame(regije, y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12)
 names(moski_poroka1)<-c("regije",regije)
+
+# ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_neveste))+
+#   geom_col(fill="lightblue", width = 0.8)+tema_graf()+xlab("Leta")+
+#   geom_line(rojstva_slo, mapping=aes_string(x=rojstva_slo$X, y=rojstva_slo$Rojeni.zunaj.zakonske.zveze))
+# 
+
+
+ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$sklenitev_zvez))+
+  geom_col(fill="lightblue", width = 0.8)+tema_graf()+xlab("Leta")+
+  geom_line(razveze_slo, mapping=aes_string(x=razveze_slo$X, y=razveze_slo$razveze2), colour="red")+
+  scale_y_continuous(sec.axis = sec_axis(~./300, name="neki"))

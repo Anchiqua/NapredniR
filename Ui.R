@@ -17,6 +17,8 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                           
                           tabPanel("Poroke skozi leta",
                                    sidebarPanel(
+                                     sliderInput(inputId="dolociLeta", label = "Določi leta", min=1960, max=2017,
+                                                 value = c(1960, 2017), sep = ""),
                         
                                     selectInput(inputId = "meritev", 
                                                 label = "Te zanima kako se skozi leta spreminja povprečna starost ali pa število sklenitev zakonskih zvez?",
@@ -24,8 +26,12 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                                             "Povprečna starost neveste" = "povp_starost_neveste", 
                                                             "Število sklenitev zakonskih zvez" = "sklenitev_zvez", 
                                                             "Sklenitev zakonskih zvez na 1000 prebivalcev" = "sklenitev_zvez_na1000_prebiv"),
-                                                selected = "Povprečna starost neveste")),
-                                    #downloadButton("downloadData", "Download"),
+                                                selected = "Povprečna starost neveste"),
+                                    checkboxInput(inputId="locitveSlo", label="Število razvez na 100 sklenjenih zakonskih zvez", value = FALSE),
+                                    checkboxInput(inputId = "rojstvaSlo", label= "Število otrok rojenih zunaj zakonske zveze",
+                                                  value = FALSE)
+                                  
+                                    ),
                                    
                                    mainPanel(
                                     plotOutput("plotPorokePoLetih")
@@ -86,9 +92,11 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                      tags$head(tags$style(HTML("
                                                                #textStarostPoroka{
                                                                 text-align: center;
-                                                                color: #cc6699;
-                                                                font-size: 20px;
-                                                                font-style: bold;
+                                                                color: #39BFCF;
+                                                                font-size: 30px;
+                                                                font-weight: 600;
+                                                                font-family: cursive;
+                                                                line-height: 1.1;
                                                                }
                                                                div.box-header {
                                                                 text-align: center;

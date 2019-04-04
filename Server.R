@@ -4,9 +4,36 @@ library(shiny)
 shinyServer(function(input, output) {
   
   output$plotPorokePoLetih <- renderPlot({
-    ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=input$meritev))+
-      geom_line()+tema_graf()+xlab("Leta")+ylab(input$meritev)
-    })
+    p= ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=input$meritev))+
+      geom_col(fill="lightblue", width = 0.8)+tema_graf()+xlab("Leta")+ylab(input$meritev)
+    
+     if (input$locitveSlo==FALSE & input$rojstvaSlo==FALSE){p+scale_x_continuous(limits = c(input$dolociLeta))}
+    
+     else if (input$locitveSlo==TRUE & input$rojstvaSlo==FALSE){
+       p+geom_line(razveze_slo, mapping=aes_string(x=razveze_slo$X, y=razveze_slo$razveze2), colour="red")+
+         scale_y_continuous(sec.axis = sec_axis(~./300, name="Razveze na sklenjene zakonske zveze [%]"))+
+         scale_x_continuous(limits = c(input$dolociLeta))
+     }
+    
+    else if (input$locitveSlo==FALSE & input$rojstvaSlo==TRUE){
+      p + geom_line(rojstva_slo, mapping = aes_string(x=rojstva_slo$X, y=rojstva_slo$rojstva2), colour="blue")+
+        scale_y_continuous(sec.axis = sec_axis(~./300, name="Število otrok rojenih zunaj zakonske zveze [%]"))+
+        scale_x_continuous(limits = c(input$dolociLeta))
+    }
+    
+    else if (input$locitveSlo==TRUE & input$rojstvaSlo==TRUE){
+      p+geom_line(razveze_slo, mapping=aes_string(x=razveze_slo$X, y=razveze_slo$razveze2), colour="red")+
+        geom_line(rojstva_slo, mapping = aes_string(x=rojstva_slo$X, y=rojstva_slo$rojstva2), colour="blue")+
+        scale_y_continuous(sec.axis = sec_axis(~./300, name="Otroci rojeni zunaj zakonske zveze in razveze [%]"))+
+        scale_x_continuous(limits = c(input$dolociLeta))
+    }
+    
+    
+    # if (input$rojstva==FALSE){p}
+    # else if (input$rojstva==TRUE){
+    #   p + geom_point(rojstva_slo, mapping = aes_string(x=rojstva_slo$X, y=rojstva_slo$Rojeni.zunaj.zakonske.zveze))
+    # }
+ })
   
   output$plotPorokeEvropa <- renderPlot({
     g=ggplot(poroke_evropa, aes_string(x=poroke_evropa$X, y=input$drzava)) + geom_col(fill="lightpink3") +
