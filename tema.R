@@ -1,3 +1,5 @@
+library(RColorBrewer)
+
 tema_graf <- function() {
   
   

@@ -1,5 +1,5 @@
 library(shiny)
-
+library(ggplot2)
 
 # define the server-side logic of the Shiny application
 shinyServer(function(input, output) {

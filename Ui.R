@@ -20,7 +20,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     
                     # define content of left side of the page
                     sidebarLayout(
-                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:violetred3", width=2), 
+                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:pink3", width=2), 
                     
                       mainPanel(
                         tabsetPanel(
