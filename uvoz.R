@@ -149,3 +149,7 @@ ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povpr
   geom_col(fill="lightblue", width = 0.8)+tema_graf()+xlab("Leta")+
   geom_line(razveze_slo, mapping=aes_string(x=razveze_slo$X, y=razveze_slo$razveze2), colour="red")+
   scale_y_continuous(sec.axis = sec_axis(~./300, name="neki"))
+
+povprecna_starost_leta[,povp_starost_zenina]
+povprecna_starost_leta$leto
+povprecna_starost_leta$povp_starost_zenina

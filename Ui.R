@@ -1,5 +1,15 @@
 # Applied Statistics 2014 conference workshop
 library(shinythemes)
+mycss <- "
+.irs-bar,
+.irs-bar-edge,
+.irs-single,
+.irs-grid-pol {
+background: #d98c8c;
+border-color: #d98c8c;
+}
+.irs-from, .irs-to, .irs-single { background: #d98c8c }
+"
 # define the user interface
 shinyUI(fluidPage(theme=shinytheme("superhero"),
                   # define type of page layout
@@ -10,32 +20,42 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     
                     # define content of left side of the page
                     sidebarLayout(
-                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:aquamarine", width=2), 
+                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:violetred3", width=2), 
                     
                       mainPanel(
                         tabsetPanel(
                           
                           tabPanel("Poroke skozi leta",
                                    sidebarPanel(
-                                     sliderInput(inputId="dolociLeta", label = "Določi leta", min=1960, max=2017,
+                                    helpText("Na grafu je prikazano kako se z leti spreminja število sklenjenih zakonskih zvez.
+                                             Spodaj lahko nastaviš obdobje, ki te zanima in po želji dodaš še graf števila razvez 
+                                             in pa graf, ki ti pove koliko otrok je rojenih zunaj zakonske zveze"),
+                                    hr(),
+                                    tags$style(mycss),
+                                    sliderInput(inputId="dolociLeta", label = "Določi leta", min=1960, max=2017,
                                                  value = c(1960, 2017), sep = ""),
-                        
-                                    selectInput(inputId = "meritev", 
-                                                label = "Te zanima kako se skozi leta spreminja povprečna starost ali pa število sklenitev zakonskih zvez?",
-                                                choices = c("Povprečna starost ženina"="povp_starost_zenina",
-                                                            "Povprečna starost neveste" = "povp_starost_neveste", 
-                                                            "Število sklenitev zakonskih zvez" = "sklenitev_zvez", 
-                                                            "Sklenitev zakonskih zvez na 1000 prebivalcev" = "sklenitev_zvez_na1000_prebiv"),
-                                                selected = "Povprečna starost neveste"),
+                                    hr(),
                                     checkboxInput(inputId="locitveSlo", label="Število razvez na 100 sklenjenih zakonskih zvez", value = FALSE),
+                                    hr(),
                                     checkboxInput(inputId = "rojstvaSlo", label= "Število otrok rojenih zunaj zakonske zveze",
                                                   value = FALSE)
                                   
                                     ),
-                                   
+                                  
                                    mainPanel(
                                     plotOutput("plotPorokePoLetih")
                                        )),
+                          
+                          tabPanel("Starost poročencev",
+                                   sidebarPanel(
+                                     checkboxGroupInput(inputId="Spol2",
+                                                        label = "Spol",
+                                                        choices = c("Ženske", "Moški"),
+                                                        selected = "Ženske")),
+                                   mainPanel(
+                                     tableOutput("tableStarost")
+                                   )
+                                   ),
                           
                           tabPanel("Poroke po regijah", 
                                    sidebarPanel(
@@ -68,7 +88,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                    )), 
                           tabPanel("Test",
                                    sidebarPanel(
-                                     helpText("Izpolni spodnji test in preveri pri katerih letih te caka poroka."),
+                                     helpText("Izpolni spodnji test in preveri pri katerih letih te čaka poroka."),
                                      radioButtons(inputId="spol",
                                                   label="Spol",
                                                   choices = c("Zenska", "Moski"),
@@ -80,19 +100,19 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                      selectInput(inputId="regija2",
                                                  label="Prebivalisce zenina",
                                                  choices = regije,
-                                                 selected = "Osrednjeslovenska")
-                                      # radioButtons(inputID="druga", 
-                                      #              label="Ste ze bili kdaj poroceni?",
-                                      #              choices = c("Da", "Ne"),
-                                      #              selected = "Ne")
+                                                 selected = "Osrednjeslovenska"),
+                                     radioButtons(inputId="druga",
+                                                  label="Ste že bili kdaj poročeni?",
+                                                  choices = c("Da", "Ne"),
+                                                  selected = "Ne")
                                     ),
                                    mainPanel(
                                      h1("Poroka te čaka pri:", align="center",style = "font-family: 'Lobster', cursive;
-                                        font-weight: 500; line-height: 1.1; color: #39BFCF;"),
+                                        font-weight: 500; line-height: 1.1; color: olivedrab"),
                                      tags$head(tags$style(HTML("
                                                                #textStarostPoroka{
                                                                 text-align: center;
-                                                                color: #39BFCF;
+                                                                color: olivedrab;
                                                                 font-size: 30px;
                                                                 font-weight: 600;
                                                                 font-family: cursive;
