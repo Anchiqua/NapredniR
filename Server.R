@@ -37,14 +37,15 @@ shinyServer(function(input, output) {
  })
   
   output$tableStarost <- renderTable({
-    # if (input$spol2=="Ženske" & input$spol2=="Moški"){table<-cbind("leto"=povprecna_starost_leta$leto,
-    #                                                                "starost neveste"=povprecna_starost_leta$povp_starost_neveste,
-    #                                                                "starost zeniina"=povprecna_starost_leta$povp_starost_zenina)}
-    # else if (input$spol2=="Ženske"){table<-cbind("leto"=povprecna_starost_leta$leto,
-    #                                                     "starost neveste"=povprecna_starost_leta$povp_starost_neveste)}
-    # else if (input$spol2=="Moški"){table<-cbind("leto"=povprecna_starost_leta$leto,
-    #                                              "starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
-  })
+     if (input$spol2==c("Ženske","Moški")){table<-cbind("leto"=povprecna_starost_leta$leto,
+                                                                    "starost neveste"=povprecna_starost_leta$povp_starost_neveste,
+                                                                    "starost zenina"=povprecna_starost_leta$povp_starost_zenina)}
+    else if (input$spol2=="Ženske"){table<-cbind("leto"=povprecna_starost_leta$leto,
+                                                         "starost neveste"=povprecna_starost_leta$povp_starost_neveste)}
+    else if (input$spol2=="Moški"){table<-cbind("leto"=povprecna_starost_leta$leto,
+                                                  "starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
+    return(table)
+    })
   
   output$plotPorokeEvropa <- renderPlot({
     g=ggplot(poroke_evropa, aes_string(x=poroke_evropa$X, y=input$drzava)) + geom_col(fill="lightpink3") +

@@ -20,7 +20,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     
                     # define content of left side of the page
                     sidebarLayout(
-                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:pink3", width=2), 
+                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:violetred3", width=2), 
                     
                       mainPanel(
                         tabsetPanel(
@@ -48,11 +48,12 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                           
                           tabPanel("Starost poročencev",
                                    sidebarPanel(
-                                     checkboxGroupInput(inputId="Spol2",
+                                     checkboxGroupInput(inputId="spol2",
                                                         label = "Spol",
                                                         choices = c("Ženske", "Moški"),
                                                         selected = "Ženske")),
                                    mainPanel(
+                                     plotOutput ("plotStarost"),
                                      tableOutput("tableStarost")
                                    )
                                    ),
