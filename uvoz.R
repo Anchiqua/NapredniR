@@ -34,7 +34,7 @@ zemljevid <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm
                              "SVN_adm1", encoding = "UTF-8")
 
 ##rownames(podatki[2:13]) <- vsota$REGIJE
-zemljevid1 <- preuredi(podatki, zemljevid, "NAME_1")
+zemljevid1 <- preuredi(podatki[2:13,], zemljevid, "NAME_1")
 
 
 pretvori.zemljevid <- function(zemljevid) {

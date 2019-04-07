@@ -72,7 +72,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                                              "2016" = "X2016", "2017" = "X2017"),
                                                  selected = "1995")),
                                    mainPanel(
-                                     plotOutput("plotPorokePoRegijah")
+                                     plotOutput("plotPorokePoRegijah", hover = "plot_hover")
                                    )),
                           
                           tabPanel("Poroke po Evropi",

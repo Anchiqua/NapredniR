@@ -65,10 +65,11 @@ shinyServer(function(input, output) {
   })
   
   
-  output$plotPorokePoRegijah <- renderPlot({ggplot() + geom_polygon(data = zemljevid2
+  output$plotPorokePoRegijah <- renderPlot(width = 400, height=400,  
+                                           {ggplot() + geom_polygon(data = zemljevid2
         , aes_string(x=zemljevid2$long, y=zemljevid2$lat, group=zemljevid2$group,
         fill=input$leta),color = "grey30") +
-      scale_fill_gradient(low="lightpink3", high="olivedrab") + tema_zemljevid()+
+      scale_fill_gradient(low="lightpink3",  high="olivedrab", limits=c(0, 2200)) + tema_zemljevid()+
       guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
     })
   
@@ -81,5 +82,4 @@ shinyServer(function(input, output) {
     HTML(paste(stevilo, "letih"))
     })
   
-
 })
