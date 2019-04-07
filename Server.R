@@ -75,9 +75,13 @@ shinyServer(function(input, output) {
   
   output$info <- renderText({
     xy_str <- function(e) {
+#      hover <- inner_join(e, zemljevid2, by=c("left" = "long", "bottom" = "lat"))
+#      hover <- filter(zemljevid2, as.integer(long*10**5) == as.integer(trunc(e$x*10**5))
+#                      , as.integer(lat*10**5) == as.integer(trunc(e$y*10**5)))
       if(is.null(e)) return("NULL\n")
-#      paste0("x=", inner_join(as.data.frame(cbind(e$x, e$y)), zemljevid2, by=c("V1"="long", "V2"="lat")))$NAME_1
-      paste0("x=", e$x, " y=", e$y, "\n")
+      paste0("regija:", filter(zemljevid2, as.integer(long*10**5) == as.integer(trunc(e$x*10**5))
+                               , as.integer(lat*10**5) == as.integer(trunc(e$y*10**5)))$NAME_1[1])
+#     paste0("x=", trunc(e$x*10**5), " y=", e$y, "\n")
     }
     paste0(
 
