@@ -1,3 +1,5 @@
+library(ggplot2)
+library(dplyr)
 podatki <- read.csv(file = "podatki.csv", sep=";", header=TRUE)
 starost_regija_nevesta2017 <- read.csv(file="starost_regija_nevesta.csv", sep=";", header = TRUE)
 starost_regija_zenin2017 <- read.csv(file="starost_regija_zenin.csv", sep=";", header = TRUE)

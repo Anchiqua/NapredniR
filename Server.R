@@ -36,16 +36,45 @@ shinyServer(function(input, output) {
     # }
  })
   
+  output$plotStarost <- renderPlot({
+    if (input$spol2=="Ženske in moški"){ggplot(povprecna_starost_leta)+
+        geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_zenina), col="olivedrab", size=2)+
+        geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_neveste), col="lightpink3", size=2)+
+        scale_x_continuous(breaks=seq(1960,2020, by=10),labels=c("1960", "'70","'80","'90","2000","'10", "'20"))+
+        xlab("Leta")+ylab("Povprečna starost neveste in ženina ob sklenitvi zakonske zveze")}
+    
+    else if (input$spol2=="Ženske"){ggplot(povprecna_starost_leta)+
+        geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_neveste), col="lightpink3", size=2)+
+        scale_x_continuous(breaks=seq(1960,2020, by=10),labels=c("1960", "'70","'80","'90","2000","'10", "'20"))+
+        xlab("Leta")+ylab("Povprečna starost neveste ob sklenitvi zakonske zveze")}
+    
+    else if (input$spol2=="Moški"){ggplot(povprecna_starost_leta)+
+        geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_zenina), col="olivedrab", size=2)+
+        scale_x_continuous(breaks=seq(1960,2020, by=10),labels=c("1960", "'70","'80","'90","2000","'10", "'20"))+
+        xlab("Leta")+ylab("Povprečna starost ženina ob sklenitvi zakonske zveze")}
+    
+  })
+  
+  
   output$tableStarost <- renderTable({
-     if (input$spol2==c("Ženske","Moški")){table<-cbind("leto"=povprecna_starost_leta$leto,
-                                                                    "starost neveste"=povprecna_starost_leta$povp_starost_neveste,
-                                                                    "starost zenina"=povprecna_starost_leta$povp_starost_zenina)}
-    else if (input$spol2=="Ženske"){table<-cbind("leto"=povprecna_starost_leta$leto,
-                                                         "starost neveste"=povprecna_starost_leta$povp_starost_neveste)}
-    else if (input$spol2=="Moški"){table<-cbind("leto"=povprecna_starost_leta$leto,
-                                                  "starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
+     if (input$spol2=="Ženske in moški"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits = 0),
+                                                                    "Starost neveste"=povprecna_starost_leta$povp_starost_neveste,
+                                                                    "Starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
+    else if (input$spol2=="Ženske"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits=0),
+                                                         "Starost neveste"=povprecna_starost_leta$povp_starost_neveste)}
+    else if (input$spol2=="Moški"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits=0),
+                                                  "Starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
     return(table)
     })
+  
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste(input$dataset, ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(datasetInput(), file, row.names = FALSE)
+    }
+  )
   
   output$plotPorokeEvropa <- renderPlot({
     g=ggplot(poroke_evropa, aes_string(x=poroke_evropa$X, y=input$drzava)) + geom_col(fill="lightpink3") +

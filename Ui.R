@@ -1,4 +1,4 @@
-# Applied Statistics 2014 conference workshop
+library(RColorBrewer)
 library(shinythemes)
 mycss <- "
 .irs-bar,
@@ -20,7 +20,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     
                     # define content of left side of the page
                     sidebarLayout(
-                      sidebarPanel(div("Pozdravljeni v aplikaciji porok"), style="color:violetred3", width=2), 
+                      sidebarPanel(div("Pozdravljeni v aplikaciji porok, kjer lahko izveste več o statističnih podatkih porok"), style="color:violetred3", width=2), 
                     
                       mainPanel(
                         tabsetPanel(
@@ -48,10 +48,12 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                           
                           tabPanel("Starost poročencev",
                                    sidebarPanel(
-                                     checkboxGroupInput(inputId="spol2",
+                                     selectInput(inputId="spol2",
                                                         label = "Spol",
-                                                        choices = c("Ženske", "Moški"),
-                                                        selected = "Ženske")),
+                                                        choices = c("Ženske", "Moški", "Ženske in moški"),
+                                                        selected = "Ženske"),
+                                     downloadButton("downloadData", "Download")
+                                     ),
                                    mainPanel(
                                      plotOutput ("plotStarost"),
                                      tableOutput("tableStarost")
@@ -99,7 +101,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                                  label = "Drzava",
                                                  choices = seznam_drzav, 
                                                  selected = "Slovenija"),
-                                     checkboxInput(inputId = "razveze", label = "Stevilo razvez na 1000 prebivalcev?", value = FALSE)
+                                     checkboxInput(inputId = "razveze", label = "Število razvez na 1000 prebivalcev?", value = FALSE)
                                      ),
                                    mainPanel(
                                      plotOutput("plotPorokeEvropa")
