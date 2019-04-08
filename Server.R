@@ -81,7 +81,7 @@ shinyServer(function(input, output) {
       if(is.null(e)) return("NULL\n")
       paste0("regija:", filter(zemljevid2, as.integer(long*10**5) == as.integer(trunc(e$x*10**5))
                                , as.integer(lat*10**5) == as.integer(trunc(e$y*10**5)))$NAME_1[1])
-#     paste0("x=", trunc(e$x*10**5), " y=", e$y, "\n")
+#    paste0("x=", trunc(e$x*10**5), " y=", e$y, "\n")
     }
     paste0(
 
