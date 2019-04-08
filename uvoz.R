@@ -74,14 +74,7 @@ zemljevid$X2016 <- zemljevid1$X2016
 zemljevid$X2017 <- zemljevid1$X2017
 zemljevid2 <- pretvori.zemljevid(zemljevid)
 
-# Zemljevid:
 
-graf.zemljevid <- ggplot() + geom_polygon(data = zemljevid2, aes(x=long, y=lat, group=group,
-                                                                  fill=X1995),color = "grey30") +
-  scale_fill_gradient(low="dodgerblue3", high="firebrick3") +
-  guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
-
-print(graf.zemljevid)
 
 # poroke v Evropi
 poroke_evropa<- read.csv(file = "poroke_evropa.csv", sep=";", header=TRUE)
@@ -106,9 +99,10 @@ names(locitve_evropa)<-seznam_drzav1
 
 
 #priprava podatkov  za kalkulator
-regije<-c("Pomurska", "Podravska", "Koroska", "Savinjska", "Zasavska", "Posavska", 
-          "Jugovzhodna Slovenija", "Osrednjeslovenska", "Gorenjska", "Primorsko-notranjska",
-          "Goriška", "Obalno-kraska")
+regije<-c("Pomurska", "Podravska", "Koroška", "Savinjska", "Zasavska", "Spodnjeposavska", 
+          "Jugovzhodna Slovenija", "Osrednjeslovenska", "Gorenjska", "Notranjsko-kraška",
+          "Goriška", "Obalno-kraška")
+
 #ženske, 1.poroka
 x1<-round(rnorm(12, 29, 3))
 x2<-round(rnorm(12, 28, 1))
