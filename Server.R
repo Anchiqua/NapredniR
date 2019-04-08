@@ -70,7 +70,7 @@ shinyServer(function(input, output) {
       if (input$regije=="Slovenija"){map <- ggplot() + geom_polygon(data = zemljevid2
                                                                     , aes_string(x=zemljevid2$long, y=zemljevid2$lat, group=zemljevid2$group,
                                                                                  fill=input$leta),color = "grey30") +
-        scale_fill_gradient(low="lightpink3",  high="olivedrab", limits=c(0, 2200)) + tema_zemljevid()+
+        scale_fill_gradient(low="olivedrab1",  high="olivedrab", limits=c(0, 2200)) + tema_zemljevid()+
         guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))}
       else { index <- zemljevid2$NAME_1 == input$regije
       z2 <- zemljevid2
