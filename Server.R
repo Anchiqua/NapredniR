@@ -73,20 +73,7 @@ shinyServer(function(input, output) {
       guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
     })
   
-  output$info <- renderText({
-    xy_str <- function(e) {
-#      hover <- inner_join(e, zemljevid2, by=c("left" = "long", "bottom" = "lat"))
-#      hover <- filter(zemljevid2, as.integer(long*10**5) == as.integer(trunc(e$x*10**5))
-#                      , as.integer(lat*10**5) == as.integer(trunc(e$y*10**5)))
-      if(is.null(e)) return("NULL\n")
-      paste0("regija:", filter(zemljevid2, as.integer(long*10**5) == as.integer(trunc(e$x*10**5))
-                               , as.integer(lat*10**5) == as.integer(trunc(e$y*10**5)))$NAME_1[1])
-#    paste0("x=", trunc(e$x*10**5), " y=", e$y, "\n")
-    }
-    paste0(
 
-      xy_str(input$plot_hover))})
-      
   
   output$textStarostPoroka <- renderText({
     if (input$spol=="Zenska" & input$druga=="Ne"){stevilo=zenske_poroka1[which(zenske_poroka1$regije==input$regija1), input$regija2]}
