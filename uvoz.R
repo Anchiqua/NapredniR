@@ -32,9 +32,12 @@ source("zemljevid.r", encoding = "UTF-8")
 # Uvozimo zemljevid.
 zemljevid <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm_shp.zip",
                              "SVN_adm1", encoding = "UTF-8")
-rownames(podatki) <- podatki$X
 
-##rownames(podatki[2:13]) <- vsota$REGIJE
+rownames(podatki) <- c("Slovanije", "Pomurska", "Podravska", "Koroška", "Savinjska", "Zasavska", "Spodnjeposavska", 
+                       "Jugovzhodna Slovenija", "Osrednjeslovenska", "Gorenjska", "Notranjsko-kraška", "Goriška", 
+                       "Obalno-kraška")
+
+
 zemljevid1 <- preuredi(podatki[2:13,], zemljevid, "NAME_1", novi=NULL)
 
 
