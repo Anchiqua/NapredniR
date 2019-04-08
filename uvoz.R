@@ -157,3 +157,5 @@ ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povpr
 povprecna_starost_leta[,povp_starost_zenina]
 povprecna_starost_leta$leto
 povprecna_starost_leta$povp_starost_zenina
+
+

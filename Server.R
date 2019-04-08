@@ -66,14 +66,24 @@ shinyServer(function(input, output) {
   
   
   output$plotPorokePoRegijah <- renderPlot(width = 400, height=400,  
-                                           {ggplot() + geom_polygon(data = zemljevid2
-        , aes_string(x=zemljevid2$long, y=zemljevid2$lat, group=zemljevid2$group,
-        fill=input$leta),color = "grey30") +
-      scale_fill_gradient(low="lightpink3",  high="olivedrab", limits=c(0, 2200)) + tema_zemljevid()+
-      guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))
+                                           {
+      if (input$regije=="Slovenija"){map <- ggplot() + geom_polygon(data = zemljevid2
+                                                                    , aes_string(x=zemljevid2$long, y=zemljevid2$lat, group=zemljevid2$group,
+                                                                                 fill=input$leta),color = "grey30") +
+        scale_fill_gradient(low="lightpink3",  high="olivedrab", limits=c(0, 2200)) + tema_zemljevid()+
+        guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))}
+      else { index <- zemljevid2$NAME_1 == input$regije
+      z2 <- zemljevid2
+      z2$graf <- c(rep(as.integer(1), nrow(z2)))
+      z2[index, 43] <- as.integer(2)
+      map <- ggplot() + geom_polygon(data = z2, 
+                              aes_string(x=z2$long, y=z2$lat, group=z2$group,
+                                         fill=z2$graf),color = "grey30") +
+        scale_fill_gradient(low="grey50",  high="olivedrab3", limits=c(1, 2), guide=FALSE) + tema_zemljevid()
+      }
+     return(map)
     })
   
-
   
   output$textStarostPoroka <- renderText({
     if (input$spol=="Zenska" & input$druga=="Ne"){stevilo=zenske_poroka1[which(zenske_poroka1$regije==input$regija1), input$regija2]}
