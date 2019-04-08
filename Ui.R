@@ -88,7 +88,8 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                                              "Obalno-kraška"),
                                                  selected = "Slovenija")),
                                    mainPanel(
-                                     plotOutput("plotPorokePoRegijah")
+                                     plotOutput("plotPorokePoRegijah"),
+                                     textOutput("textPorokePoRegijah")
                                    )),
                           
                           tabPanel("Poroke po Evropi",

@@ -84,6 +84,11 @@ shinyServer(function(input, output) {
      return(map)
     })
   
+  output$textPorokePoRegijah <- renderText({
+    
+    paste(input$regije, ": število porok", podatki[input$regije, input$leta])
+  })
+  
   
   output$textStarostPoroka <- renderText({
     if (input$spol=="Zenska" & input$druga=="Ne"){stevilo=zenske_poroka1[which(zenske_poroka1$regije==input$regija1), input$regija2]}
