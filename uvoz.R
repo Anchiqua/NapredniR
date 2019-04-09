@@ -39,7 +39,14 @@ rownames(podatki) <- c("Slovenija", "Pomurska", "Podravska", "Koroška", "Savinj
                        "Jugovzhodna Slovenija", "Osrednjeslovenska", "Gorenjska", "Notranjsko-kraška", "Goriška", 
                        "Obalno-kraška")
 
-
+delez <- function(tabela, vrstica) {
+  nova_tabela <- tabela
+  for (i in 1:nrow(tabela)){
+    nova_tabela[i,] <- (tabela[i,]/tabela[vrstica,])*100
+  }
+  return(nova_tabela)
+}
+podatki <- round(delez(podatki[,2:24], 1), 1)
 zemljevid1 <- preuredi(podatki[2:13,], zemljevid, "NAME_1", novi=NULL)
 
 

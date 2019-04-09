@@ -6,10 +6,8 @@ shinyServer(function(input, output) {
   
   output$plotPorokePoLetih <- renderPlot({
     p= ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$sklenitev_zvez))+
-      geom_col(fill="lightpink3", width = 0.8)+tema_graf()+xlab("Leta")+ylab("Število sklenitev zakonskih zvez")+
-      theme(panel.grid.major.x = element_blank())
-      
-
+      geom_col(fill="lightpink3", width = 0.8)+tema_graf()+xlab("Leta")+ylab("Število sklenitev zakonskih zvez")
+    
      if (input$locitveSlo==FALSE & input$rojstvaSlo==FALSE){p+scale_x_continuous(limits = c(input$dolociLeta))}
     
      else if (input$locitveSlo==TRUE & input$rojstvaSlo==FALSE){
@@ -43,18 +41,17 @@ shinyServer(function(input, output) {
         geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_zenina), col="olivedrab", size=2)+
         geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_neveste), col="lightpink3", size=2)+
         scale_x_continuous(breaks=seq(1960,2020, by=10),labels=c("1960", "'70","'80","'90","2000","'10", "'20"))+
-        xlab("Leta")+ylab("Povprečna starost neveste in ženina ob sklenitvi zakonske zveze")+tema_graf()+
-        scale_colour_manual("Legenda", breaks=c("Nevesta", "Ženin"), values = c("lightpink3", "olivedrab"))}
+        xlab("Leta")+ylab("Povprečna starost neveste in ženina ob sklenitvi zakonske zveze")}
     
     else if (input$spol2=="Ženske"){ggplot(povprecna_starost_leta)+
         geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_neveste), col="lightpink3", size=2)+
         scale_x_continuous(breaks=seq(1960,2020, by=10),labels=c("1960", "'70","'80","'90","2000","'10", "'20"))+
-        xlab("Leta")+ylab("Povprečna starost neveste ob sklenitvi zakonske zveze")+tema_graf()}
+        xlab("Leta")+ylab("Povprečna starost neveste ob sklenitvi zakonske zveze")}
     
     else if (input$spol2=="Moški"){ggplot(povprecna_starost_leta)+
         geom_line(aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$povp_starost_zenina), col="olivedrab", size=2)+
         scale_x_continuous(breaks=seq(1960,2020, by=10),labels=c("1960", "'70","'80","'90","2000","'10", "'20"))+
-        xlab("Leta")+ylab("Povprečna starost ženina ob sklenitvi zakonske zveze")+tema_graf()}
+        xlab("Leta")+ylab("Povprečna starost ženina ob sklenitvi zakonske zveze")}
     
   })
   
@@ -83,7 +80,7 @@ shinyServer(function(input, output) {
     g=ggplot(poroke_evropa, aes_string(x=poroke_evropa$X, y=input$drzava)) + geom_col(fill="lightpink3") +
       scale_x_continuous(breaks=seq(1960,2010, by=10),labels=c("1960", "'70","'80","'90","2000","'10"))+
       scale_y_continuous(breaks=seq(1,12,by=1),labels=c("1","2","3","4","5","6","7","8","9","10","11","12")) + 
-      xlab("Leta") + ylab("Stevilo porok na 1000 prebivalcev")+labs(title = input$drzava)+tema_graf()+theme(panel.grid.major.x = element_blank())
+      xlab("Leta") + ylab("Stevilo porok na 1000 prebivalcev")+labs(title = input$drzava)
     if (input$razveze==FALSE){g}
     else if (input$razveze==TRUE){
       g+geom_point(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y=input$drzava), colour="olivedrab", size=2)+
