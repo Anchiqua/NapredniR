@@ -87,12 +87,8 @@ shinyServer(function(input, output) {
     if (input$razveze==FALSE){g}
     else if (input$razveze==TRUE){
       g+geom_point(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y=input$drzava), colour="olivedrab", size=2)+
-        geom_line(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y=input$drzava), colour="olivedrab")+
-      theme(legend.background = element_blank()) +
-        theme(legend.position = "bottom", legend.text = element_text(size=6, face="bold"),
-              legend.title=element_blank(), 
-              legend.key = element_rect(fill = "transparent", color = NA, size=0.6))
-      
+        geom_line(locitve_evropa, mapping=aes_string(x=locitve_evropa$X, y=input$drzava), colour="olivedrab")
+
       }
   })
   
@@ -102,7 +98,7 @@ shinyServer(function(input, output) {
       if (input$regije=="Slovenija"){map <- ggplot() + geom_polygon(data = zemljevid2
                                                                     , aes_string(x=zemljevid2$long, y=zemljevid2$lat, group=zemljevid2$group,
                                                                                  fill=input$leta),color = "grey30") +
-        scale_fill_gradient(low="olivedrab1",  high="olivedrab", limits=c(2.4, 4.6)) + tema_zemljevid()+
+        scale_fill_gradient(low="olivedrab1",  high="#31a354", limits=c(2.4, 4.6)) + tema_zemljevid()+
         guides(fill = guide_colorbar(title = "Porazdelitev\nštevila porok\npo regijah"))}
       else { index <- zemljevid2$NAME_1 == input$regije
       z2 <- zemljevid2

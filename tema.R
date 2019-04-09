@@ -20,8 +20,7 @@ tema_graf <- function() {
     theme(panel.grid.minor=element_blank()) +
     theme(axis.ticks=element_blank()) +
     
-    theme(plot.title=element_text(color=color.title, size=13, vjust=1.25, face="bold", hjust = -0.08)) +
-    theme(plot.subtitle=element_text(color=color.subtitle, size=10, vjust=1.25, hjust = -0.05))+
+    theme(plot.title=element_text(color=color.title, size=13, face="bold")) +
     theme(axis.text.x=element_text(size=10,color=color.axis.text)) +
     theme(axis.text.y=element_text(size=10,color=color.axis.text)) 
 }

@@ -20,7 +20,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     
                     # define content of left side of the page
                     sidebarLayout(
-                      sidebarPanel(div("Pozdravljeni v aplikaciji porok, kjer lahko izveste več o statističnih h porok"), style="color:violetred3", width=2), 
+                      sidebarPanel(div("Pozdravljeni v aplikaciji porok, kjer lahko izveste več o sklenitvah zakonskih zvez v številkah."), style="color:violetred3", width=2), 
                     
                       mainPanel(
                         tabsetPanel(
@@ -48,6 +48,8 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                           
                           tabPanel("Starost poročencev",
                                    sidebarPanel(
+                                     helpText("Na grafu si lahko pogledate kako se starost mladoporočencev spreminja skozi leta."),
+                                     hr(),
                                      selectInput(inputId="spol2",
                                                         label = "Spol",
                                                         choices = c("Ženske", "Moški", "Ženske in moški"),
