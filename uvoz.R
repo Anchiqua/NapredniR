@@ -85,7 +85,7 @@ names(poroke_evropa)[names(poroke_evropa)=='Velika.Britanija']<-'Velika Britanij
 names(poroke_evropa)[names(poroke_evropa)=='Bosna.in.Hercegovina']<-'Bosna in Hercegovina'
 
 seznam_drzav1<-colnames(poroke_evropa)
-seznam_drzav<-seznam_drzav1[2:36]
+seznam_drzav<-seznam_drzav1[2:35]
 
 locitve_evropa<- read.csv(file = "locitve_evropa.csv", sep=";", header=TRUE)
 names(locitve_evropa)<-seznam_drzav1

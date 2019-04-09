@@ -20,7 +20,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                     
                     # define content of left side of the page
                     sidebarLayout(
-                      sidebarPanel(div("Pozdravljeni v aplikaciji porok, kjer lahko izveste več o statističnih podatkih porok"), style="color:violetred3", width=2), 
+                      sidebarPanel(div("Pozdravljeni v aplikaciji porok, kjer lahko izveste več o statističnih h porok"), style="color:violetred3", width=2), 
                     
                       mainPanel(
                         tabsetPanel(
@@ -35,7 +35,7 @@ shinyUI(fluidPage(theme=shinytheme("superhero"),
                                     sliderInput(inputId="dolociLeta", label = "Določi leta", min=1960, max=2017,
                                                  value = c(1960, 2017), sep = ""),
                                     hr(),
-                                    checkboxInput(inputId="locitveSlo", label="Število razvez na 100 sklenjenih zakonskih zvez", value = FALSE),
+                                    checkboxInput(inputId="locitveSlo", label="Število razvez na 100 sklenjenih zakonskih zvez [%]", value = FALSE),
                                     hr(),
                                     checkboxInput(inputId = "rojstvaSlo", label= "Število otrok rojenih zunaj zakonske zveze",
                                                   value = FALSE)
