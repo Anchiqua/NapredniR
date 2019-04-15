@@ -146,10 +146,11 @@ names(moski_poroka1)<-c("regije",regije)
 # 
 
 
-ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$sklenitev_zvez))+
+g <- ggplot(povprecna_starost_leta, aes_string(x=povprecna_starost_leta$leto, y=povprecna_starost_leta$sklenitev_zvez))+
   geom_col(fill="lightblue", width = 0.8)+tema_graf()+xlab("Leta")+
   geom_line(razveze_slo, mapping=aes_string(x=razveze_slo$X, y=razveze_slo$razveze2), colour="red")+
   scale_y_continuous(sec.axis = sec_axis(~./300, name="neki"))
+
 
 povprecna_starost_leta[,povp_starost_zenina]
 povprecna_starost_leta$leto

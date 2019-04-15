@@ -10,7 +10,9 @@ shinyServer(function(input, output) {
       theme(panel.grid.major.x = element_blank())
       
 
-     if (input$locitveSlo==FALSE & input$rojstvaSlo==FALSE){p+scale_x_continuous(limits = c(input$dolociLeta))}
+     if (input$locitveSlo==FALSE & input$rojstvaSlo==FALSE){
+       p+scale_x_continuous(limits = c(input$dolociLeta))
+     }
     
      else if (input$locitveSlo==TRUE & input$rojstvaSlo==FALSE){
        p+geom_line(razveze_slo, mapping=aes_string(x=razveze_slo$X, y=razveze_slo$razveze2), colour="violetred3", size=1)+
@@ -57,25 +59,25 @@ shinyServer(function(input, output) {
         xlab("Leta")+ylab("Povprečna starost ženina ob sklenitvi zakonske zveze")+tema_graf()}
     
   })
-  
+  spol2Input <- reactive({if (input$spol2=="Ženske in moški"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits = 0),
+                                                                          "Povprečna starost neveste"=povprecna_starost_leta$povp_starost_neveste,
+                                                                          "Povprečna starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
+    else if (input$spol2=="Ženske"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits=0),
+                                                 "Povprečna starost neveste"=povprecna_starost_leta$povp_starost_neveste)}
+    else if (input$spol2=="Moški"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits=0),
+                                                "Povprečna starost ženina"=povprecna_starost_leta$povp_starost_zenina)}}
+  )
   
   output$tableStarost <- renderTable({
-     if (input$spol2=="Ženske in moški"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits = 0),
-                                                                    "Starost neveste"=povprecna_starost_leta$povp_starost_neveste,
-                                                                    "Starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
-    else if (input$spol2=="Ženske"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits=0),
-                                                         "Starost neveste"=povprecna_starost_leta$povp_starost_neveste)}
-    else if (input$spol2=="Moški"){table<-cbind("Leto"=format(povprecna_starost_leta$leto, digits=0),
-                                                  "Starost ženina"=povprecna_starost_leta$povp_starost_zenina)}
-    return(table)
+     spol2Input()
     })
-  
+
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste(input$dataset, ".csv", sep = "")
+      paste(input$spol2, ".csv", sep = "")
     },
     content = function(file) {
-      write.csv(datasetInput(), file, row.names = FALSE)
+      write.csv(spol2Input(), file, row.names = FALSE)
     }
   )
   
